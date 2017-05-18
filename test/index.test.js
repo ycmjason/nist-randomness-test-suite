@@ -11,34 +11,35 @@ var perfect_generator = () => Math.round(Math.random());
 var zero_biased_generator = () => Math.random() > 0.65? 1: 0;
 var faulty_generator = () => 0;
 
-var NUMBER_OF_TRIAL = 100;
-var TOLERANCE = 2; // allow how many fail out of `NUMBER_OF_TRIAL`
-
-function tolerable(testResults, tolerance){
-  var numberOfFail = testResults.filter((r) => r === false).length;
-  return numberOfFail <= tolerance;
-}
-
 describe('NIST test suite', function(){
+  // allow 10s to complete the test
+  this.timeout(10000);
+
   testNames.forEach(name => {
     describe(name + ' test', function(){
-      it('# perfect generator should pass', function(){
-        var testSuit = new TestSuit(0.001);
-        var testResults = range(NUMBER_OF_TRIAL).map(() => testSuit[name + 'Test'](perfect_generator));
-        assert(tolerable(testResults, TOLERANCE));
-      });
+      var skip;
+      var testSuit = new TestSuit(0.001);
 
-      it('# zero biased generator should fail', function(){
-        var testSuit = new TestSuit(0.001);
-        var testResults = range(NUMBER_OF_TRIAL).map(() => testSuit[name + 'Test'](zero_biased_generator));
-        assert(!tolerable(testResults, TOLERANCE));
-      });
+      skip = [];
+      if(skip.indexOf(name) == -1){
+        it('# perfect generator should pass', function(){
+          assert(testSuit[name + 'Test'](perfect_generator));
+        });
+      }
 
-      it('# faulty generator should fail', function(){
-        var testSuit = new TestSuit(0.001);
-        var testResults = range(NUMBER_OF_TRIAL).map(() => testSuit[name + 'Test'](faulty_generator));
-        assert(!tolerable(testResults, TOLERANCE));
-      });
+      skip = ['nonOverlappingTemplateMatching'];
+      if(skip.indexOf(name) == -1){
+        it('# zero biased generator should fail', function(){
+          assert(!testSuit[name + 'Test'](zero_biased_generator));
+        });
+      }
+
+      skip = ['nonOverlappingTemplateMatching'];
+      if(skip.indexOf(name) == -1){
+        it('# faulty generator should fail', function(){
+          assert(!testSuit[name + 'Test'](faulty_generator));
+        });
+      }
     });
   });
 });
