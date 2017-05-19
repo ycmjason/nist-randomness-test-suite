@@ -4,7 +4,42 @@
 
 This is an npm module which provides a subset of tests documented in the [Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications](http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-22r1a.pdf).
 
-## Implemented:
+## Implemented tests
 - Frequency test ... 2-2
 - Runs test ... 2-5
 - Non-overlapping Template Matching test ... 2-14
+
+## Usage
+```javascript
+var TestSuit = require('../lib/index');
+
+var alpha = 0.001;
+
+var testSuite = new TestSuit(alpha);
+
+// you can also pass in a PRNG/RNG and the testsuite would generate 10^5 bits to test
+var generator = () => Math.round(Math.random());
+testSuite.frequencyTest(generator);
+testSuite.runsTest(generator);
+testSuite.nonOverlappingTemplateMatchingTest(generator);
+
+// you can pass in a bit string to test its randomness
+var bitString = "10101001101";
+testSuite.frequencyTest(bitString);
+testSuite.runsTest(bitString);
+testSuite.nonOverlappingTemplateMatchingTest(bitString);
+
+// alternatively, you could pass in an array of bits
+var bits = [0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0];
+testSuite.frequencyTest(bits);
+testSuite.runsTest(bits);
+testSuite.nonOverlappingTemplateMatchingTest(bits);
+```
+
+## Recommended size of input
+As suggested by the NIST test suite, you would want to have a 10^4 to 10^7 long bits to obtain a meaningful result.
+
+## Test
+```
+npm test
+```
