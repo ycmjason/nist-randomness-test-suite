@@ -36,8 +36,13 @@ testSuite.runsTest(bits);
 testSuite.nonOverlappingTemplateMatchingTest(bits);
 ```
 
-## Recommended size of input
-As suggested by the NIST test suite, you would want to have a 10^4 to 10^7 long bits to obtain a meaningful result.
+## Recommended size of input (by the NIST test suite)
+
+### Alpha
+Alpha should be of range [0.001, 0.01]. An alpha of 0.01 indicates that one would expect 1 sequence in 100 sequences would be rejected. 
+
+### Length of the bits
+You would want to have a 10^4 to 10^7 long bits to obtain a meaningful result. 
 
 ## Test
 ```
