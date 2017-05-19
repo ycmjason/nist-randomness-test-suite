@@ -1,7 +1,7 @@
 {
   "name": "nist-randomness-test-suite",
   "version": "0.0.1",
-  "description": "",
+  "description": "[![Build Status](https://travis-ci.org/ycmjason/nist-randomness-test-suite.svg?branch=master)](https://travis-ci.org/ycmjason/nist-randomness-test-suite)",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive"
@@ -27,5 +27,8 @@
   },
   "devDependencies": {
     "mocha": "^3.4.1"
+  },
+  "directories": {
+    "test": "test"
   }
 }
