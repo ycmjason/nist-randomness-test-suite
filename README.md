@@ -9,9 +9,14 @@ This is an npm module which provides a subset of tests documented in the [Statis
 - Runs test ... 2-5
 - Non-overlapping Template Matching test ... 2-14
 
+## Install
+```
+npm install --save-dev nist-randomness-test-suite
+```
+
 ## Usage
 ```javascript
-var TestSuit = require('../lib/index');
+var TestSuit = require('nist-randomness-test-suite');
 
 var alpha = 0.001;
 
@@ -48,3 +53,6 @@ You would want to have a 10^4 to 10^7 long bits to obtain a meaningful result.
 ```
 npm test
 ```
+
+## Author
+Jason Yu

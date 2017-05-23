@@ -1,8 +1,8 @@
 {
   "name": "nist-randomness-test-suite",
-  "version": "0.0.3",
-  "description": "[![Build Status](https://travis-ci.org/ycmjason/nist-randomness-test-suite.svg?branch=master)](https://travis-ci.org/ycmjason/nist-randomness-test-suite)",
-  "main": "index.js",
+  "version": "0.0.4",
+  "description": "This is an npm module which provides a subset of tests documented in the [Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications](http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-22r1a.pdf).",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "mocha --recursive"
   },
