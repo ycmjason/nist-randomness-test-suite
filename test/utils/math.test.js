@@ -45,19 +45,19 @@ describe('utils/math', function(){
 
   describe('Matrix', function(){
     it('# swapRows(i, j)', function(){
-      var m = new math.BinaryMatrix([
+      var m = new math.Matrix([
         [0, 1, 0],
         [1, 1, 0],
         [0, 1, 0],
       ]);
-      assert.deepEqual(m.swapRows(1, 2), new math.BinaryMatrix([
+      assert.deepEqual(m.swapRows(1, 2), new math.Matrix([
         [0, 1, 0],
         [0, 1, 0],
         [1, 1, 0],
       ]))
     });
     it('# rank()', function(){
-      var m = new math.BinaryMatrix([
+      var m = new math.Matrix([
         [1, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 1],
@@ -66,19 +66,19 @@ describe('utils/math', function(){
         [0, 0, 0, 0, 1, 0],
       ]);
       assert.equal(m.rank(), 4);
-      var m = new math.BinaryMatrix([
-        [1, 2, -1, -4]
-        [2, 3, -1, -11]
+      var m = new math.Matrix([
+        [1, 2, -1, -4],
+        [2, 3, -1, -11],
         [-2, 0, -3, 22]
       ]);
       assert.equal(m.rank(), 3);
-      m = new math.BinaryMatrix([
+      m = new math.Matrix([
         [0, 1, 0],
         [1, 1, 0],
         [0, 1, 0],
       ]);
       assert.equal(m.rank(), 2);
-      m = new math.BinaryMatrix([
+      m = new math.Matrix([
         [0, 1, 0],
         [1, 0, 1],
         [0, 1, 1],
