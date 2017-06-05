@@ -44,51 +44,27 @@ describe('NIST test suite', function(){
   var testSuite = new TestSuite(0.001);
 
   // tests using generator
-  generators.forEach(generator => {
-    describe(generator.name, function(){
-      TestSuite.testNames.forEach(testName => {
+  TestSuite.testNames.forEach(testName => {
+    describe(testName + '()', function(){
+      generators.forEach(generator => {
         if(generator.skip.includes(testName)) return;
-
         it(`# ${generator.name} should ${generator.expect} ${testName}`, function(){
           if(generator.expect === "pass") assert(testSuite[testName](generator.next));
           else assert(!testSuite[testName](generator.next));
-        });
 
-      });
-    });
-  });
-
-  // tests using bit array
-  generators.forEach(generator => {
-    describe(generator.name, function(){
-      TestSuite.testNames.forEach(testName => {
-        if(generator.skip.includes(testName)) return;
-
-        it(`# bit array generated from ${generator.name} should ${generator.expect} ${testName}`, function(){
           var bit_arr = range(NUMBER_OF_BIT).map(generator.next);
-
           if(generator.expect === "pass") assert(testSuite[testName](bit_arr));
           else assert(!testSuite[testName](bit_arr));
-        });
 
-      });
-    });
-  });
-
-  // tests using bit string
-  generators.forEach(generator => {
-    describe(generator.name, function(){
-      TestSuite.testNames.forEach(testName => {
-        if(generator.skip.includes(testName)) return;
-
-        it(`# bit array generated from ${generator.name} should ${generator.expect} ${testName}`, function(){
-          var bit_string = range(NUMBER_OF_BIT).map(generator.next).join('');
-
+          var bit_string = bit_arr.join('');
           if(generator.expect === "pass") assert(testSuite[testName](bit_string));
           else assert(!testSuite[testName](bit_string));
         });
-
       });
     });
+  });
+
+  describe('runAll(bits)', function(){
+    
   });
 });
