@@ -42,4 +42,42 @@ describe('utils/math', function(){
     ];
     tests.forEach(([input, result]) => assert(Math.abs(math[method].apply(null, input) - result) <= EXPECTED_ACCURACY));
   });
+
+  describe('BinaryMatrix', function(){
+    it('# swapRows(i, j)', function(){
+      var m = new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]);
+      assert.deepEqual(m.swapRows(1, 2), new math.BinaryMatrix([
+        [0, 1, 0],
+        [0, 1, 0],
+        [1, 1, 0],
+      ]))
+    });
+    it('# rank()', function(){
+      var m = new math.BinaryMatrix([
+        [1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 1],
+        [1, 0, 1, 0, 1, 0],
+        [0, 0, 1, 0, 1, 1],
+        [0, 0, 0, 0, 1, 0],
+      ]);
+      assert.equal(m.rank(), 4);
+      m = new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]);
+      assert.equal(m.rank(), 2);
+      m = new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 0, 1],
+        [0, 1, 1],
+      ]);
+      assert.equal(m.rank(), 3);
+    });
+  });
 });

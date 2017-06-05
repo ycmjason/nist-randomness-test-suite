@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ycmjason/nist-randomness-test-suite#readme",
   "dependencies": {
+    "lodash.chunk": "^4.2.0",
     "mathjs": "^3.13.1"
   },
   "devDependencies": {
