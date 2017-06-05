@@ -27,7 +27,7 @@ var generators = [
     name: "zero biased generator",
     next: () => Math.random() > 0.65? 1: 0,
     expect: "fail",
-    skip: ['nonOverlappingTemplateMatchingTest']
+    skip: ['nonOverlappingTemplateMatchingTest', 'binaryMatrixRankTest']
   },
   {
     name: "faulty generator",

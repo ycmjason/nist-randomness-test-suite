@@ -43,21 +43,84 @@ describe('utils/math', function(){
     tests.forEach(([input, result]) => assert(Math.abs(math[method].apply(null, input) - result) <= EXPECTED_ACCURACY));
   });
 
-  describe('Matrix', function(){
-    it('# swapRows(i, j)', function(){
-      var m = new math.Matrix([
+  describe('BinaryMatrix', function(){
+    it('# set(i)', function(){
+      var m = new math.BinaryMatrix([
         [0, 1, 0],
         [1, 1, 0],
         [0, 1, 0],
       ]);
-      assert.deepEqual(m.swapRows(1, 2), new math.Matrix([
+      assert.deepEqual(m.set(1, [1, 0, 0]), new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 0, 0],
+        [0, 1, 0],
+      ]))
+      assert.deepEqual(m, new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]));
+    });
+    it('# set(i, j)', function(){
+      var m = new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]);
+      assert.deepEqual(m.set(1, 1, 0), new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 0, 0],
+        [0, 1, 0],
+      ]))
+      assert.deepEqual(m.set(0, 0, 0), new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]))
+      assert.deepEqual(m, new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]));
+    });
+    it('# get(i)', function(){
+      var m = new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]);
+      assert.deepEqual(m.get(1), [1, 1, 0])
+      assert.deepEqual(m.get(0), [0, 1, 0])
+    });
+    it('# get(i, j)', function(){
+      var m = new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]);
+      assert.equal(m.get(1, 2), 0)
+      assert.equal(m.get(0, 0), 0)
+      assert.equal(m.get(0, 1), 1)
+    });
+    it('# swapRows(i, j)', function(){
+      var m = new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]);
+      assert.deepEqual(m.swapRows(1, 2), new math.BinaryMatrix([
         [0, 1, 0],
         [0, 1, 0],
         [1, 1, 0],
       ]))
+      assert.deepEqual(m, new math.BinaryMatrix([
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ]));
     });
     it('# rank()', function(){
-      var m = new math.Matrix([
+      var m = new math.BinaryMatrix([
         [1, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 1],
@@ -66,24 +129,22 @@ describe('utils/math', function(){
         [0, 0, 0, 0, 1, 0],
       ]);
       assert.equal(m.rank(), 4);
-      var m = new math.Matrix([
-        [1, 2, -1, -4],
-        [2, 3, -1, -11],
-        [-2, 0, -3, 22]
-      ]);
-      assert.equal(m.rank(), 3);
-      m = new math.Matrix([
+      m = new math.BinaryMatrix([
         [0, 1, 0],
         [1, 1, 0],
         [0, 1, 0],
       ]);
       assert.equal(m.rank(), 2);
-      m = new math.Matrix([
+      m = new math.BinaryMatrix([
         [0, 1, 0],
         [1, 0, 1],
         [0, 1, 1],
       ]);
       assert.equal(m.rank(), 3);
+      m = new math.BinaryMatrix(
+        new Array(32).fill(new Array(32).fill(0))
+      );
+      assert.equal(m.rank(), 0);
     });
   });
 });

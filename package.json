@@ -1,6 +1,6 @@
 {
   "name": "nist-randomness-test-suite",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "This is an npm module which provides a subset of tests documented in the Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications.",
   "main": "./lib/index.js",
   "scripts": {
