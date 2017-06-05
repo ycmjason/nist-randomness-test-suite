@@ -9,8 +9,8 @@ This is an npm module which provides a subset of tests documented in the [Statis
 | ------------------------------------   | ---------------------------- |
 | Frequency test                         | 2-2                          |
 | Runs test                              | 2-5                          |
-| Non-overlapping Template Matching test | 2-14                         |
 | Binary Matrix Rank Test                | 2-10                         |
+| Non-overlapping Template Matching test | 2-14                         |
 
 ## Install
 ```
@@ -29,22 +29,22 @@ var testSuite = new TestSuit(alpha);
 var generator = () => Math.round(Math.random());
 testSuite.frequencyTest(generator);
 testSuite.runsTest(generator);
-testSuite.nonOverlappingTemplateMatchingTest(generator);
 testSuite.binaryMatrixRankTest(generator);
+testSuite.nonOverlappingTemplateMatchingTest(generator);
 
 // you can pass in a bit string to test its randomness
 var bitString = "10101001101";
 testSuite.frequencyTest(bitString);
 testSuite.runsTest(bitString);
-testSuite.nonOverlappingTemplateMatchingTest(bitString);
 testSuite.binaryMatrixRankTest(bitString);
+testSuite.nonOverlappingTemplateMatchingTest(bitString);
 
 // alternatively, you could pass in an array of bits
 var bits = [0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0];
 testSuite.frequencyTest(bits);
 testSuite.runsTest(bits);
-testSuite.nonOverlappingTemplateMatchingTest(bits);
 testSuite.binaryMatrixRankTest(bits);
+testSuite.nonOverlappingTemplateMatchingTest(bits);
 ```
 
 ## Recommended size of input (by the NIST test suite)
