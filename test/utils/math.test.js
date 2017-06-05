@@ -43,7 +43,7 @@ describe('utils/math', function(){
     tests.forEach(([input, result]) => assert(Math.abs(math[method].apply(null, input) - result) <= EXPECTED_ACCURACY));
   });
 
-  describe('BinaryMatrix', function(){
+  describe('Matrix', function(){
     it('# swapRows(i, j)', function(){
       var m = new math.BinaryMatrix([
         [0, 1, 0],
@@ -66,6 +66,12 @@ describe('utils/math', function(){
         [0, 0, 0, 0, 1, 0],
       ]);
       assert.equal(m.rank(), 4);
+      var m = new math.BinaryMatrix([
+        [1, 2, -1, -4]
+        [2, 3, -1, -11]
+        [-2, 0, -3, 22]
+      ]);
+      assert.equal(m.rank(), 3);
       m = new math.BinaryMatrix([
         [0, 1, 0],
         [1, 1, 0],
