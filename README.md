@@ -5,9 +5,12 @@
 This is an npm module which provides a subset of tests documented in the [Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications](http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-22r1a.pdf).
 
 ## Implemented tests
-- Frequency test ... 2-2
-- Runs test ... 2-5
-- Non-overlapping Template Matching test ... 2-14
+| Test                                   | Reference in NIST Test Suite   |
+| :------------------------------------: | :----------------------------: |
+| Frequency test                         | 2-2                            |
+| Runs test                              | 2-5                            |
+| Non-overlapping Template Matching test | 2-14                           |
+| Binary Matrix Rank Test                | 2-10                           |
 
 ## Install
 ```
@@ -27,18 +30,21 @@ var generator = () => Math.round(Math.random());
 testSuite.frequencyTest(generator);
 testSuite.runsTest(generator);
 testSuite.nonOverlappingTemplateMatchingTest(generator);
+testSuite.binaryMatrixRankTest(generator);
 
 // you can pass in a bit string to test its randomness
 var bitString = "10101001101";
 testSuite.frequencyTest(bitString);
 testSuite.runsTest(bitString);
 testSuite.nonOverlappingTemplateMatchingTest(bitString);
+testSuite.binaryMatrixRankTest(bitString);
 
 // alternatively, you could pass in an array of bits
 var bits = [0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0];
 testSuite.frequencyTest(bits);
 testSuite.runsTest(bits);
 testSuite.nonOverlappingTemplateMatchingTest(bits);
+testSuite.binaryMatrixRankTest(bits);
 ```
 
 ## Recommended size of input (by the NIST test suite)
