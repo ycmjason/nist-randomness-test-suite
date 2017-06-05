@@ -45,7 +45,7 @@ describe('NIST test suite', function(){
 
   // tests using generator
   TestSuite.testNames.forEach(testName => {
-    describe(testName + '()', function(){
+    describe(testName + '(bits)', function(){
       generators.forEach(generator => {
         if(generator.skip.includes(testName)) return;
         it(`# ${generator.name} should ${generator.expect} ${testName}`, function(){
@@ -65,6 +65,10 @@ describe('NIST test suite', function(){
   });
 
   describe('runAll(bits)', function(){
-    
+    it(`# should return a report of everything`, function(){
+      var report = testSuite.runAll(generators.filter(g => g.name === 'perfect generator')[0].next);
+      assert.deepEqual(Object.keys(report), TestSuite.testNames);
+      assert.deepEqual(Object.keys(report).map(k => report[k]), TestSuite.testNames.map(t => true));
+    });
   });
 });
